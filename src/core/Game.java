@@ -37,6 +37,21 @@ public class Game {
 		}
 		generateShips(field);
 	}
+	public String getWinner(){
+		if(getCountKillingShips(enemyField) == IntegerConstants.COUNT_SHIPS)
+			return "User";
+		if(getCountKillingShips(friendlyField) == IntegerConstants.COUNT_SHIPS)
+			return "Computer";
+		return null;
+	}
+	private int getCountKillingShips(Cell[][] field){
+		int count = 0;
+		for(int i = 0; i < IntegerConstants.FIELD_SIZE; i++)
+			for(int j = 0; j < IntegerConstants.FIELD_SIZE; j++)
+				if(field[i][j].isKilling())
+					count++;
+		return count;
+	}
 	public void userStep(int x, int y){
 
 		x /= IntegerConstants.CELL_SIZE;

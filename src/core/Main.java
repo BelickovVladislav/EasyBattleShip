@@ -1,5 +1,7 @@
 package core;
 
+import javax.swing.JOptionPane;
+
 import forms.HomeForm;
 
 public class Main {
@@ -11,8 +13,6 @@ public class Main {
 		// TODO Auto-generated method stub
 		final HomeForm form = new HomeForm();
 		Game.getInstance().start();
-//		Game.getInstance().paintFriendlyField(form.getFriedlyGraphic());
-//		Game.getInstance().paintEnemyField(form.getEnemyGraphic());
 		new Thread(new Runnable() {
 
 			@Override
@@ -22,6 +22,12 @@ public class Main {
 					Game.getInstance().paintFriendlyField(
 							form.getFriendlyGraphic());
 					Game.getInstance().paintEnemyField(form.getEnemyGraphic());
+					String winner = Game.getInstance().getWinner();
+					if (winner != null) {
+						JOptionPane.showMessageDialog(null, "Win " + winner);
+						Game.getInstance().start();
+					}
+
 				}
 			}
 		}).start();
