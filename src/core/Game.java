@@ -14,6 +14,7 @@ public class Game {
 
 	private Cell[][] friendlyField;
 	private Cell[][] enemyField;
+	private Bot bot;
 
 	private Game() {
 		friendlyField = new Cell[IntegerConstants.FIELD_SIZE][IntegerConstants.FIELD_SIZE];
@@ -23,6 +24,7 @@ public class Game {
 	public void start() {
 		generate(friendlyField, true);
 		generate(enemyField, false);
+		bot = new Bot(friendlyField);
 	}
 
 	private void generate(Cell[][] field, boolean friendly) {
@@ -30,12 +32,23 @@ public class Game {
 			for (int j = 0; j < IntegerConstants.FIELD_SIZE; j++) {
 				field[i][j] = new Cell(i, j);
 				if (friendly)
-					field[i][j].setfFriendly();
+					field[i][j].setFriendly();
 			}
 		}
 		generateShips(field);
 	}
+	public void userStep(int x, int y){
 
+		x /= IntegerConstants.CELL_SIZE;
+		y /= IntegerConstants.CELL_SIZE;
+		if(inField(x, y) && !enemyField[x][y].getStatusShot()){
+			enemyField[x][y].shot();
+			bot.step();
+		}
+	}
+	private boolean inField(int x, int y){
+		return x >= 0 && x < IntegerConstants.FIELD_SIZE && y >= 0 && y < IntegerConstants.FIELD_SIZE;
+	}
 	private void generateShips(Cell[][] field) {
 		Random rand = new Random();
 		int currentCountShips = 0;

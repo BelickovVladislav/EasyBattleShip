@@ -7,6 +7,8 @@ import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -48,6 +50,38 @@ public class HomeForm extends JFrame {
 				
 			}
 		});
+		enemyPanel.addMouseListener(new MouseListener() {
+			
+			@Override
+			public void mouseReleased(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mousePressed(MouseEvent event) {
+				// TODO Auto-generated method stub
+				Game.getInstance().userStep(event.getX(), event.getY());
+			}
+			
+			@Override
+			public void mouseExited(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
 		this.add(startBattle, BorderLayout.SOUTH);
 		this.add(gamePanel, BorderLayout.CENTER);
 		this.setSize(IntegerConstants.FORM_WIDTH, IntegerConstants.FORM_HEIGHT);
@@ -57,7 +91,7 @@ public class HomeForm extends JFrame {
 		this.show();
 	}
 
-	public Graphics getFriedlyGraphic() {
+	public Graphics getFriendlyGraphic() {
 		return friendlyPanel.getGraphics();
 	}
 

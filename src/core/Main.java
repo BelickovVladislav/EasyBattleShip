@@ -20,7 +20,7 @@ public class Main {
 				while (true) {
 					// TODO Auto-generated method stub
 					Game.getInstance().paintFriendlyField(
-							form.getFriedlyGraphic());
+							form.getFriendlyGraphic());
 					Game.getInstance().paintEnemyField(form.getEnemyGraphic());
 				}
 			}
